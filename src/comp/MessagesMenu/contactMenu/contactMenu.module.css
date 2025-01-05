@@ -1,0 +1,21 @@
+.contactsMenu{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    padding-right: 20px;
+    border-right: solid black 1px;
+}
+
+.contacts{
+    padding: 0;
+    margin: 0;
+}
+
+.contacts > li{
+    margin-top: 10px;
+}
+
+.item{
+    height: 50px;
+}

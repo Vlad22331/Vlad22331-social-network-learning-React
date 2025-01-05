@@ -1,0 +1,11 @@
+.friendContainer{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.friendContainer > img{
+    width: 50px;
+    border-radius: 100%;
+    margin-bottom: 5px;
+}

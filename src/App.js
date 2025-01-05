@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Header from './comp/header';
+import Menu from './comp/menu/menu';
+import Messages from './comp/MessagesMenu/messagesMenu';
+import Profile from './comp/ProfileMenu/profileMenu';
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+        <Header />
+        <div className='main-content'>
+          <Menu />
+          <Routes>
+            <Route path="/" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
+            <Route path="/profile/*" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
+            <Route path="/messages/*" element = {<Messages messageData={props.state.messageData}/>} />
+          </Routes>
+
+        </div>
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.postContainer{
+    margin-top: 20px;
+}
+
+.post > li{
+    /* display: flex; */
+    align-items: center;
+    border-bottom: solid black 1px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.post > li > div{
+    display: flex;
+    align-items: center;
+}
+
+.postPoint{
+    background-color: yellow;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+.likesCount{
+    margin-left: 30px;
+    font-size: large;
+    padding-bottom: 10px;
+}

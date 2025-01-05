@@ -1,0 +1,4 @@
+.messageMainInfo{
+    display: flex;
+    width: calc(85% - 100px);
+}

@@ -1,0 +1,22 @@
+.mainImgContainer{
+    height: 300px;
+    width: 100%;
+}
+
+.mainImgContainer > img{
+    height: 100%;
+    width: 100%;
+}
+
+.userInfoContainer{
+    display: flex;
+    margin-top: 20px;
+}
+
+.userInfoText{
+    margin-left: 20px;
+}
+
+.userInfo{
+    display: flex;
+}

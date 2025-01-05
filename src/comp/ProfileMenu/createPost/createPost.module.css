@@ -1,0 +1,19 @@
+.createPost{
+    display: flex;
+    flex-direction: column;
+}
+
+.createPost > textarea{
+    resize: none;
+    width: 100%;
+    height: 60px;
+}
+
+.createPost > button{
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: green;
+    width: 100px;
+    height: 25px;
+    border: none;
+}

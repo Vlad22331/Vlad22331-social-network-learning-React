@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./messeg.module.css"
 
 const Messeg = (props) => {

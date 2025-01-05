@@ -7,7 +7,7 @@ const Messages = (props) => {
     return(
         <div className={styles.messageMainInfo}>
             <ContactMenu contactMass={props.messageData.contactMass} />
-            <Dialog messageMass={props.messageData.messageMass}/>
+            <Dialog messageData={props.messageData} dispatch = {props.dispatch}/>
         </div>
     )
 }

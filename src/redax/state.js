@@ -1,5 +1,8 @@
 const addPost = "ADD-POST";
 const updateNewPostText = "UPDATE-NEW-POST-TEXT";
+const updateMessage = "UPDATE-MESSAGE";
+const sendMessage = "SEND-MESSAGE";
+
 
 const store = {
     _state: {
@@ -22,22 +25,14 @@ const store = {
             currentNewPostText: "",
         },
      
-        messageData: {messageMass: [
+        messageData: {
+            typedMessage: "",
+            messageMass: [
                 {message: "Hi", youAuthor: true},
                 {message: "Hi", youAuthor: false},
                 {message: "What are you", youAuthor: true},
                 {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
-                {message: "I'm great", youAuthor: false},
+
             ],
     
             contactMass: [
@@ -57,7 +52,7 @@ const store = {
     },
 
     subscribe (observer) {
-        this._informObserverDOM = observer
+        this._informObserver = observer
     },
 
     dispatch(action) {
@@ -69,12 +64,27 @@ const store = {
             }
             this._state.profileData.currentNewPostText = "";
             this._state.profileData.postsMass.unshift(newPost);
-            this._informObserverDOM(this._state)
+            this._informObserver(this._state)
         }
 
         else if(action.type === "UPDATE-NEW-POST-TEXT"){
             this._state.profileData.currentNewPostText = action.text    
-            this._informObserverDOM(this._state)
+            this._informObserver(this._state)
+        }
+
+        else if(action.type === "UPDATE-MESSAGE"){
+            this._state.messageData.typedMessage = action.text;
+            this._informObserver(this._state);
+        }
+
+        else if(action.type === "SEND-MESSAGE"){
+            const newMessage = {
+                message: this._state.messageData.typedMessage,
+                youAuthor: true
+            }
+            this._state.messageData.typedMessage = "";
+            this._state.messageData.messageMass.push(newMessage)
+            this._informObserver(this._state)
         }
     }
 }
@@ -88,6 +98,18 @@ export const addPostActionCreator = () =>{
 export const updateNewPostTextActionCreator = (text) => {
     return{
         type: updateNewPostText, text: text
+    }
+}
+
+export const sendMessageActionCreator = () =>{
+    return{
+        type: sendMessage
+    }
+}
+
+export const updateMessageActionCreator = (text) => {
+    return{
+        type: updateMessage, text: text
     }
 }
 

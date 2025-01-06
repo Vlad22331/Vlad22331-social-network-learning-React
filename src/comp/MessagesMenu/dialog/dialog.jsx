@@ -7,6 +7,8 @@ import { updateMessageActionCreator, sendMessageActionCreator } from "../../../r
 const Dialog = (props) =>{
     const textareaRef = React.createRef()
 
+    // const sendMessageButton []
+
     const updateMessage = () =>{
         const text = textareaRef.current.value
         props.dispatch(updateMessageActionCreator(text))

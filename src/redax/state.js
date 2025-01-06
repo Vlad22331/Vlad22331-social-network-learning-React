@@ -1,8 +1,10 @@
+import profileReducer from "./profileReducer";
+import dialogReducer from "./dialogReducer"
+
 const addPost = "ADD-POST";
 const updateNewPostText = "UPDATE-NEW-POST-TEXT";
 const updateMessage = "UPDATE-MESSAGE";
 const sendMessage = "SEND-MESSAGE";
-
 
 const store = {
     _state: {
@@ -56,36 +58,10 @@ const store = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST"){
-            const newPost = {
-                message: this._state.profileData.currentNewPostText,
-                likesCount: 0,
-                id:3
-            }
-            this._state.profileData.currentNewPostText = "";
-            this._state.profileData.postsMass.unshift(newPost);
-            this._informObserver(this._state)
-        }
+        this._state.profileData = profileReducer(this._state.profileData, action)
+        this._state.messageData = dialogReducer(this._state.messageData, action)
+        this._informObserver(this._state)
 
-        else if(action.type === "UPDATE-NEW-POST-TEXT"){
-            this._state.profileData.currentNewPostText = action.text    
-            this._informObserver(this._state)
-        }
-
-        else if(action.type === "UPDATE-MESSAGE"){
-            this._state.messageData.typedMessage = action.text;
-            this._informObserver(this._state);
-        }
-
-        else if(action.type === "SEND-MESSAGE"){
-            const newMessage = {
-                message: this._state.messageData.typedMessage,
-                youAuthor: true
-            }
-            this._state.messageData.typedMessage = "";
-            this._state.messageData.messageMass.push(newMessage)
-            this._informObserver(this._state)
-        }
     }
 }
 

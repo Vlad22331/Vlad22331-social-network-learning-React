@@ -6,6 +6,7 @@ import Messages from './comp/MessagesMenu/messagesMenu';
 import Profile from './comp/ProfileMenu/profileMenu';
 
 function App(props) {
+  debugger
   return (
     <div className='wrapper'>
         <Header />
@@ -14,7 +15,7 @@ function App(props) {
           <Routes>
             <Route path="/" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
             <Route path="/profile/*" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
-            <Route path="/messages/*" element = {<Messages messageData={props.state.messageData} dispatch = {props.dispatch}/>} />
+            <Route path="/messages/*" element = {<Messages messageData={props.state.dialogData} dispatch = {props.dispatch}/>} />
           </Routes>
 
         </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./createPost.module.css"
-import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redax/state";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redax/store";
 
 const createPost = (props) =>{
     const createPostTextarea = React.createRef();

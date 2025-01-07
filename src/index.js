@@ -4,7 +4,7 @@ import './index.css';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import store from './redax/state';
+import store from './redax/storeRedux';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

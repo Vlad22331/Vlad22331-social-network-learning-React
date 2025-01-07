@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./dialog.module.css"
 import Messeg from "./messeg/messeg";
-import { updateMessageActionCreator, sendMessageActionCreator } from "../../../redax/state";
+import { updateMessageActionCreator, sendMessageActionCreator } from "../../../redax/store";
 
 
 const Dialog = (props) =>{

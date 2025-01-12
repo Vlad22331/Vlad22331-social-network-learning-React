@@ -14,7 +14,7 @@ function App(props) {
           <Routes>
             <Route path="/" element = {<Profile store = {props.store}/>} />
             <Route path="/profile/*" element = {<Profile store = {props.store}/>} />  
-            {/* <Route path="/messages/*" element = {<Messages messageData={props.getState().dialogData} dispatch = {props.dispatch.bind(props.store)}/>} /> */}
+            <Route path="/messages/*" element = {<Messages store = {props.store}/>} />
           </Routes>
         </div>
     </div>

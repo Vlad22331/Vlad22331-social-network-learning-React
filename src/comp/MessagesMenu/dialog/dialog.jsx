@@ -1,23 +1,19 @@
 import React from "react";
 import styles from "./dialog.module.css"
 import Messeg from "./messeg/messeg";
-import { updateMessageActionCreator, sendMessageActionCreator } from "../../../redax/store";
-
 
 const Dialog = (props) =>{
-    const textareaRef = React.createRef()
-
-    // const sendMessageButton []
-
     const updateMessage = () =>{
         const text = textareaRef.current.value
-        props.dispatch(updateMessageActionCreator(text))
+        props.onUpdateMessage(text)
     }
     
     const sendMessage = () =>{
-        props.dispatch(sendMessageActionCreator())
+        props.onSendMessage()
     }
     
+    const textareaRef = React.createRef()
+
     const messageComp = props.messageData.messageMass.map(item => <Messeg message={item.message} youAuthor={item.youAuthor} />)
     
     return(

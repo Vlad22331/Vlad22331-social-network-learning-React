@@ -6,18 +6,16 @@ import Messages from './comp/MessagesMenu/messagesMenu';
 import Profile from './comp/ProfileMenu/profileMenu';
 
 function App(props) {
-  debugger
   return (
     <div className='wrapper'>
         <Header />
         <div className='main-content'>
           <Menu />
           <Routes>
-            <Route path="/" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
-            <Route path="/profile/*" element = {<Profile profileData={props.state.profileData} dispatch={props.dispatch}/>} />
-            <Route path="/messages/*" element = {<Messages messageData={props.state.dialogData} dispatch = {props.dispatch}/>} />
+            <Route path="/" element = {<Profile store = {props.store}/>} />
+            <Route path="/profile/*" element = {<Profile store = {props.store}/>} />  
+            {/* <Route path="/messages/*" element = {<Messages messageData={props.getState().dialogData} dispatch = {props.dispatch.bind(props.store)}/>} /> */}
           </Routes>
-
         </div>
     </div>
   );

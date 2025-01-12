@@ -7,13 +7,11 @@ const createPost = (props) =>{
 
     const updateNewPostText = () =>{
         const text = createPostTextarea.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.onUpdateNewPostText(text)    
     }
 
     const addPost = () =>{
-        if(createPostTextarea.current.value) {
-            props.dispatch(addPostActionCreator())
-        }
+        props.onAddPost()
     }
 
     return(

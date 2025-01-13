@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) =>{
     return{
-        messageData: state.messageData
+        messageData: state.dialogData
     }
 }
 

@@ -13,7 +13,6 @@ const renderDOM = () =>{
     root.render(
     <React.StrictMode>
         <BrowserRouter>
-            {/* <App state={store.getState()} dispatch ={store.dispatch.bind(store)}/> */}
             <App store = {store}/>
         </BrowserRouter>
     </React.StrictMode>

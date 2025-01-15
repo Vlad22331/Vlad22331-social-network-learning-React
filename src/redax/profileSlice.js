@@ -24,6 +24,7 @@ const profileSlice = createSlice({
     initialState,
     reducers: {
         addPost(state) {
+            if(state.currentNewPostText.trim() === "") return
             const newPost = {
                 message: state.currentNewPostText,
                 likesCount: 0,
@@ -32,6 +33,7 @@ const profileSlice = createSlice({
             state.currentNewPostText = "";
             state.postsMass.unshift(newPost);
         },
+
         updateNewPostText(state, action) {
             state.currentNewPostText = action.payload
         }

@@ -1,24 +1,26 @@
-import { updateMessageActionCreator, sendMessageActionCreator } from "../../../redax/store";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Dialog from "./dialog";
-import { connect } from "react-redux";
+import { updateMessage, sendMessage } from "../../../redax/dialogSlice";
 
-const mapStateToProps = (state) =>{
-    return{
-        messageData: state.dialogData
-    }
-}
+const DialogContainer = () => {
+  const messageData = useSelector((state) => state.dialogData);
+  const dispatch = useDispatch();
+  const updateMessageHendler = (text) => {
+    dispatch(updateMessage(text));
+  };
 
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        onUpdateMessage: (text) =>{
-            dispatch(updateMessageActionCreator(text))
-        },
-        onSendMessage: () =>{
-            dispatch(sendMessageActionCreator())
-        }
-    }
-}
+  const sendMessageHendler = () => {
+    dispatch(sendMessage());
+  };
 
-const DialogContainer = connect(mapStateToProps, mapDispatchToProps)(Dialog)
+  return (
+    <Dialog
+      messageData={messageData}
+      onUpdateMessage={updateMessageHendler}
+      onSendMessage={sendMessageHendler}
+    />
+    );
+};
 
-export default DialogContainer
+export default DialogContainer;

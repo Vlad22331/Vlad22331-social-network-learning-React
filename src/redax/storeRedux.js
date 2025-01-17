@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import profileReducer from "./profileReducer";
 import profileSlice from "./profileSlice";
 import dialogSlice from "./dialogSlice";
+import userSlice from "./userSlice"
 
 let reducers = combineReducers({
     profileData: profileSlice,
-    dialogData: dialogSlice 
+    dialogData: dialogSlice,
+    usersData: userSlice
 })
 
 

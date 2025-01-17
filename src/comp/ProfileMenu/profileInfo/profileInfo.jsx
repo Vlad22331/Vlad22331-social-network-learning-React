@@ -13,7 +13,7 @@ const profileInfo = (props) => {
                 </div>
                 <div className={styles.userInfoText}>
                     <div>
-                        <h2>{props.userInfo.name}</h2>
+                        <h2>{props.userInfo.userName}</h2>
                     </div>
                     <div className={styles.userInfo}>
                         Date of birth: {props.userInfo.birthday}

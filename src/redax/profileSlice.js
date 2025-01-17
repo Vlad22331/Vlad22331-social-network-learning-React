@@ -12,7 +12,7 @@ let initialState =  {
     
     postsMass: [
         {message: "kkkkkksss", likesCount: 1, id:0},
-        {message: "Sigmo is top", likesCount: 11, id:1},
+        {message: "He is top", likesCount: 11, id:1},
         {message: "Life is beateful", likesCount: 999999, id:2}
     ],
 

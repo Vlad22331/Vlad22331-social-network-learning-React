@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./createPost.module.css"
 
 const createPost = (props) =>{
-    debugger
     const updateNewPostText = (event) =>{
         const text = event.target.value;
         props.onUpdateNewPostText(text)    

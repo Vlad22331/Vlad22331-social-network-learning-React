@@ -6,18 +6,23 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redax/storeRedux';
 import { Provider } from 'react-redux';
+import {QueryClientProvider, QueryClient} from 'react-query';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+const queryClient = new QueryClient();
+
 const renderDOM = () =>{
     root.render(
     <React.StrictMode>
+        <QueryClientProvider client={queryClient}>
         <BrowserRouter>
             <Provider store={store}>
                 <App store = {store}/>
             </Provider>
         </BrowserRouter>
+        </QueryClientProvider>
     </React.StrictMode>
     );
 }

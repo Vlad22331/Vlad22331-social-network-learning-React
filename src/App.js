@@ -16,7 +16,7 @@ function App(props) {
             <Route path="/" element = {<Profile store = {props.store}/>} />
             <Route path="/profile/*" element = {<Profile store = {props.store}/>} />  
             <Route path="/messages/*" element = {<Messages store = {props.store}/>} />
-            <Route path="/user/*" element = {<UserContainer/>} />
+            <Route path="/Users/*" element = {<UserContainer/>} />
           </Routes>
         </div>
     </div>

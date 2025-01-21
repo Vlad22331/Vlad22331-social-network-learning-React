@@ -9,6 +9,7 @@ const menu = () => {
             <ul className={styles.menuList}>
                 <li className={styles.menuItem}> <NavLink to="Profile">Profile</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="Messages">Messages</NavLink> </li>
+                <li className={styles.menuItem}> <NavLink to="Users">Users</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="News">News</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="Music">Music</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="Setting">Setting</NavLink> </li>

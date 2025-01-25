@@ -8,7 +8,6 @@
 .menuList{
     display: flex;
     flex-direction: column;
-    /* height: 100%; */
     background-color: green;
     align-items: center;
     margin: 0px auto;

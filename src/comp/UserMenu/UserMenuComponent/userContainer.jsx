@@ -1,57 +1,53 @@
-import { useDispatch } from "react-redux";
 import User from "./user";
-import { followChange } from "../../../redax/userSlice";
 import style from "./user.module.css"
-import { useQuery } from "react-query";
+import { useInfiniteQuery, useQuery } from "react-query";
 import fetchUsers from "../../../api/fetchUsers";
-import ChangeUserButton from "./ChangeUserButton";
-import { useState } from "react";   
+import { useEffect, useState } from "react";   
+import { useInView } from "react-intersection-observer";
 
 const UserContainer = ()=>{
-    // const usersData = useSelector((state) => state.usersData)
-    // const dispatch = useDispatch()
-    
-    // const onFollowChangeHendler = (action) =>{
-    //     dispatch(followChange(action))
-    // }
+    const {ref, inView} = useInView({});
 
-    // const userMass = usersData.users.map(item => <User
-    //     key = {item.id} 
-    //     userData={item} 
-    //      followChange={onFollowChangeHendler}
-    //      />) 
+    const { data, status, fetchNextPage, hasNextPage} = useInfiniteQuery({
+        queryKey: ["users"],
+        queryFn: fetchUsers,
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, allPages) => {
+            return lastPage.length > 0 ? allPages.length + 1 : undefined;
+        },
+    });
 
-    // return (
-    //     <div className={style.userContainer}>
-    //         {userMass}
-    //     </div>
-    // )
-    const [page, setPage] = useState(0)
+    useEffect(()=>{
+        if(inView){
+            fetchNextPage()            
+        };
+        if(!hasNextPage){
 
-    const {data, status} = useQuery(["users", page], fetchUsers,)
-    const dispatch = useDispatch()
+        }
+    }, [inView, hasNextPage, fetchNextPage])
 
-    const onFollowChangeHendler = (action) =>{
-        dispatch(followChange(action))
-    }
+    const userMass =
+    data?.pages.flatMap((page, pageIndex) =>
+        page.map((item, itemIndex) => {
+            const isLastItem =
+                pageIndex === data.pages.length - 1 &&
+                itemIndex === page.length - 1;
 
-    const changeUser = () =>{
-        setPage((old) => old + 1)
-    }
-
-    const userMass = data ? data.map(item => (
-        <User
-        key = {item.id} 
-        userData={item} 
-        followChange={onFollowChangeHendler}
-        />)) : null
+            return (
+                <User
+                    key={item.id}
+                    userData={item}
+                    ref={isLastItem ? ref : null}
+                />
+            );
+        })
+    ) || null;
 
     return (
         <div className={style.userContainer}>
             {status === "loading" && <div>Loading data...</div>}
             {status === "error" && <div>Eror</div>}
             {status === "success" && userMass}
-            <ChangeUserButton changeUser = {changeUser}/>
         </div>
     )
 }

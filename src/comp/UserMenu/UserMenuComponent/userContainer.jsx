@@ -1,11 +1,16 @@
 import User from "./user";
 import style from "./user.module.css"
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import fetchUsers from "../../../api/fetchUsers";
-import { useEffect, useState } from "react";   
+import { useEffect } from "react";   
 import { useInView } from "react-intersection-observer";
+import { useDispatch, useSelector } from "react-redux";
+import { changeIsFetching } from "../../../redax/userSlice";
+import Preloader from "../../preloader";
 
 const UserContainer = ()=>{
+    const usersData = useSelector((state) => state.usersData)
+    const dispatch = useDispatch();
     const {ref, inView} = useInView({});
 
     const { data, status, fetchNextPage, hasNextPage} = useInfiniteQuery({
@@ -43,11 +48,15 @@ const UserContainer = ()=>{
         })
     ) || null;
 
+    useEffect(() => {
+        if (status === "success") {
+            dispatch(changeIsFetching());
+        }
+    }, [status, dispatch]);
+
     return (
         <div className={style.userContainer}>
-            {status === "loading" && <div>Loading data...</div>}
-            {status === "error" && <div>Eror</div>}
-            {status === "success" && userMass}
+            {usersData.isFetching ? Preloader : userMass}
         </div>
     )
 }

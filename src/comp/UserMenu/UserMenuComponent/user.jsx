@@ -1,9 +1,10 @@
 import React from "react";
 import style from "./user.module.css"
+import { NavLink } from "react-router-dom";
 
 const User = React.forwardRef(({ userData }, ref) => {
     return (
-        <div className={style.container} ref={ref}>
+        <NavLink to = {`/profile/${userData.id}`} ref={ref} className={style.container}>    
             <div className={style.imgBtnBlock}>
                 <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6lMZEGPcwqXQauZ39i3WethGEMWnkAPNoSw&s"} alt=""/>
             </div>
@@ -17,7 +18,7 @@ const User = React.forwardRef(({ userData }, ref) => {
                     <h3>{userData.address.street}</h3>
                 </div>
             </div>
-        </div>
+        </NavLink>
     );
 });
 

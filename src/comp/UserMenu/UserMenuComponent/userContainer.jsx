@@ -56,7 +56,7 @@ const UserContainer = ()=>{
 
     return (
         <div className={style.userContainer}>
-            {usersData.isFetching ? Preloader : userMass}
+            {usersData.isFetching ? <Preloader/> : userMass}
         </div>
     )
 }

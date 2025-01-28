@@ -1,8 +1,9 @@
-import { updateNewPostText, addPost } from "../../../redax/profileSlice";
-import CreatePost from "./createPost";
+import React from "react";
+import Profilemenu from "./profileMenu";
 import { useSelector, useDispatch } from "react-redux";
+import { updateNewPostText, addPost } from "../../redax/profileSlice";
 
-const CreatePostContainer = () =>{
+const ProfileMenuContainer = () => {
     const profileData = useSelector((state) => state.profileData);
     const dispatch = useDispatch();
 
@@ -12,15 +13,14 @@ const CreatePostContainer = () =>{
     const onAddPostHendler = () =>{
         dispatch(addPost());
     }
-    return(
-        <CreatePost
-            profileData={profileData}
-            onUpdateNewPostText={onUpdateNewPostTextHendler}
-            onAddPost={onAddPostHendler}
-        />
-    )
 
+    return(
+        <Profilemenu
+            profileData={profileData}
+            onUpdateNewPostTextHendler={onUpdateNewPostTextHendler}
+            onAddPostHendler={onAddPostHendler}
+        /> 
+    )
 }
 
-
-export default CreatePostContainer
+export default ProfileMenuContainer

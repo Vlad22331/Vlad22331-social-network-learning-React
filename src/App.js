@@ -3,8 +3,8 @@ import './App.css';
 import Header from './comp/header';
 import Menu from './comp/menu/menu';
 import Messages from './comp/MessagesMenu/messagesMenu';
-import Profile from './comp/ProfileMenu/profileMenu';
 import UserContainer from './comp/UserMenu/UserMenuComponent/userContainer';
+import ProfileMenuContainer from './comp/ProfileMenu/profileMenuContainer';
 
 function App(props) {
   return (
@@ -13,8 +13,8 @@ function App(props) {
         <div className='main-content'>
           <Menu />
           <Routes>
-            <Route path="/" element = {<Profile store = {props.store}/>} />
-            <Route path="/profile/*" element = {<Profile store = {props.store}/>} />  
+            <Route path="/" element = {<ProfileMenuContainer/>} />
+            <Route path="/profile/*" element = {<ProfileMenuContainer/>} />  
             <Route path="/messages/*" element = {<Messages store = {props.store}/>} />
             <Route path="/Users/*" element = {<UserContainer/>} />
           </Routes>

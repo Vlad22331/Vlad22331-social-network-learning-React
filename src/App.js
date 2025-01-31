@@ -14,7 +14,7 @@ function App(props) {
           <Menu />
           <Routes>
             <Route path="/" element = {<ProfileMenuContainer/>} />
-            <Route path="/profile/*" element = {<ProfileMenuContainer/>} />  
+            <Route path="/profile/:id" element = {<ProfileMenuContainer/>} />  
             <Route path="/messages/*" element = {<Messages store = {props.store}/>} />
             <Route path="/Users/*" element = {<UserContainer/>} />
           </Routes>

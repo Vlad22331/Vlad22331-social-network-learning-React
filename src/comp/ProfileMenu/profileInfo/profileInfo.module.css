@@ -10,11 +10,20 @@
 
 .userInfoContainer{
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
-.userInfoText{
-    margin-left: 20px;
+.test{
+    width: 20%;
+}
+
+.userInfoContainer img{
+    width: 80%;
+    border-radius: 50%;
+}
+
+.userInfoName h2{
+    margin-top: 10px;
 }
 
 .userInfo{

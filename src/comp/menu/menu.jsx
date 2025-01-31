@@ -7,7 +7,7 @@ const menu = () => {
     return(
         <div className={styles.menuListContainer}>    
             <ul className={styles.menuList}>
-                <li className={styles.menuItem}> <NavLink to="Profile">Profile</NavLink> </li>
+                <li className={styles.menuItem}> <NavLink to="Profile/1">Profile</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="Messages">Messages</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="Users">Users</NavLink> </li>
                 <li className={styles.menuItem}> <NavLink to="News">News</NavLink> </li>

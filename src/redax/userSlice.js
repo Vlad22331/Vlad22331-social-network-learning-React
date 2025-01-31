@@ -8,7 +8,7 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers:{
-        changeIsFetching(state){
+        changeIsFetching(state, ){
             state.isFetching = !state.isFetching
         }
     }

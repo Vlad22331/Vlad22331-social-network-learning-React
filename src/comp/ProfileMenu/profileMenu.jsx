@@ -4,17 +4,16 @@ import Posts from "./posts/posts";
 import CreatePost from "./createPost/createPost"
 
 const ProfileMenu = (props) => {
-    debugger
     return(
-        <div className="main-info">
-            <ProfileInfo userInfo={props.profileData.userInfo} />
+        <div>
+            <ProfileInfo userInfo={props.profileData} />
             <div className="posts">
-                <CreatePost
+                {/* <CreatePost
                     profileData={props.profileData}
                     onUpdateNewPostText={props.onUpdateNewPostTextHendler}
                     onAddPost={props.onAddPostHendler}
                 />
-                <Posts postsMass={props.profileData.postsMass} />
+                <Posts postsMass={props.profileData.postsMass} /> */}
             </div>
         </div>
     )

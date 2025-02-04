@@ -1,20 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 let initialState =  {
-    // userInfo: {
-    //     id: 0,
-    //     userName: "Vlad V.",
-    //     birthday: "January 9",
-    //     city: "Rivne",
-    //     education: "SSS 'RVCNU of B and NM of Ukraine'"
-    // },
-    
-    // postsMass: [
-    //     {message: "kkkkkksss", likesCount: 1, id:0},
-    //     {message: "He is top", likesCount: 11, id:1},
-    //     {message: "Life is beateful", likesCount: 999999, id:2}
-    // ],
-
     currentNewPostText: "",
 
     isFetching: true,

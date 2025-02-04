@@ -2,6 +2,8 @@
     import ProfileMenu from "./profileMenu";
     import { useSelector, useDispatch } from "react-redux";
     import { updateNewPostText, addPost, changeIsFetching } from "../../redax/profileSlice";
+    import { useQuery } from "react-query";
+    import fetchUserData from "../../api/fetchUserData"
     import { useEffect } from "react";
     import Preloader from "../preloader"
     import { useParams } from "react-router-dom";
@@ -36,9 +38,6 @@
             };
     
             fetchData();
-
-
-
         }, [id, dispatch]);
 
         return(

@@ -10,9 +10,6 @@ const fetchSupbaseUser  = async (id) =>{
     .from("users")
     .select("*")
     .eq("id", id)
-    .single();
-
-    debugger
     return data;
 }
 

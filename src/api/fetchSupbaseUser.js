@@ -5,11 +5,12 @@ const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZi
 
 const supabase = createClient(url, key)
 
-const fetchSupbaseUser  = async (id) =>{
-    const { data, error } = await supabase
+const fetchSupbaseUser  = async (props) =>{
+    const { data } = await supabase
     .from("users")
     .select("*")
-    .eq("id", id)
+    .eq("id", props.queryKey[1])
+    .single()
     return data;
 }
 

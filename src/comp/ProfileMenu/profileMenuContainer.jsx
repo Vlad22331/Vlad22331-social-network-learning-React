@@ -6,7 +6,7 @@
     import { useEffect } from "react";
     import Preloader from "../preloader"
     import { useParams } from "react-router-dom";
-    import fetchSupbaseUser from "../../api/fetchSupbaseUser";
+    import fetchSupbaseUser from "../../api/fetchUserData";
 
     const ProfileMenuContainer = () => {
         const profileData = useSelector((state) => state.profileData);

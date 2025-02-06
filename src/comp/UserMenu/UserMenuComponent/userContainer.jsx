@@ -2,6 +2,7 @@ import User from "./user";
 import style from "./user.module.css"
 import { useInfiniteQuery } from "react-query";
 import fetchUsers from "../../../api/fetchUsers";
+import fetchSupbaseUsers from "../../../api/fetchUsers"
 import { useEffect } from "react";   
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,21 +16,24 @@ const UserContainer = ()=>{
 
     const { data, status, fetchNextPage, hasNextPage} = useInfiniteQuery({
         queryKey: ["users"],
-        queryFn: fetchUsers,
-        initialPageParam: 1,
+        queryFn: fetchSupbaseUsers,
+        initialPageParam: 0,
         getNextPageParam: (lastPage, allPages) => {
-            return lastPage.length > 0 ? allPages.length + 1 : undefined;
-        },
+            return lastPage && lastPage.length > 0 ? allPages.length : undefined;
+        }
     });
 
     useEffect(()=>{
         if(inView){
             fetchNextPage()            
         };
-        if(!hasNextPage){
-
-        }
     }, [inView, hasNextPage, fetchNextPage])
+
+    useEffect(() => {
+        if (status === "success") {
+            dispatch(changeIsFetching());
+        }
+    }, [status, dispatch]);
 
     const userMass =
     data?.pages.flatMap((page, pageIndex) =>
@@ -47,12 +51,6 @@ const UserContainer = ()=>{
             );
         })
     ) || null;
-
-    useEffect(() => {
-        if (status === "success") {
-            dispatch(changeIsFetching());
-        }
-    }, [status, dispatch]);
 
     return (
         <div className={style.userContainer}>

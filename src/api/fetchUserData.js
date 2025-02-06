@@ -1,10 +1,17 @@
-import axios from "axios";
+import { createClient } from "@supabase/supabase-js";
 
-const fetchUserData = async ( props ) => {
-    const response = await axios.get(
-        `https://jsonplaceholder.typicode.com/users/${props.queryKey[1]}`
-    );
-    return response.data;
-};
+const url = "https://bidyyofdrwetctmsfmei.supabase.co";
+const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpZHl5b2ZkcndldGN0bXNmbWVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcxMjMwNjMsImV4cCI6MjA1MjY5OTA2M30.xWejwuVJnO2jKDoOo-dM3nisC6m_oYsEPJQM0X671dA"
 
-export default fetchUserData;
+const supabase = createClient(url, key)
+
+const fetchSupbaseUser  = async (props) =>{
+    const { data } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", props.queryKey[1])
+    .single()
+    return data;
+}
+
+export default fetchSupbaseUser

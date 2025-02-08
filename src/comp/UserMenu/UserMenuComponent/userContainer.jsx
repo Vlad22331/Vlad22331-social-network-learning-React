@@ -1,12 +1,11 @@
 import User from "./user";
 import style from "./user.module.css"
 import { useInfiniteQuery } from "react-query";
-import fetchUsers from "../../../api/fetchUsers";
 import fetchSupbaseUsers from "../../../api/fetchUsers"
 import { useEffect } from "react";   
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
-import { changeIsFetching } from "../../../redax/userSlice";
+import { changeIsFetching } from "../../../redax/usersSlice";
 import Preloader from "../../preloader";
 
 const UserContainer = ()=>{

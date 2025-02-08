@@ -1,20 +1,23 @@
 import React from "react";
 import ProfileInfo from "./profileInfo/profileInfo"
+import Preloader from "../preloader"
 import Posts from "./posts/posts";
 import CreatePost from "./createPost/createPost"
 
-const ProfileMenu = (props) => {
+const ProfileMenu = (props) => {    
     return(
         <div>
-            <ProfileInfo userInfo={props.profileData} />
-            <div className="posts">
+            {props.userIsFetching === false ? <ProfileInfo userInfo={props.profileData} /> : <Preloader/>}
                 {/* <CreatePost
                     profileData={props.profileData}
                     onUpdateNewPostText={props.onUpdateNewPostTextHendler}
                     onAddPost={props.onAddPostHendler}
-                />
-                <Posts postsMass={props.profileData.postsMass} /> */}
-            </div>
+                    />*/
+                    // {props.userIsFetching === false ? <Posts postsMass={props.postData} /> : <Preloader/>}
+                    <div className="posts">
+                    {props.postsIsFetching === false ? <Posts postData={props.postData} /> : <Preloader/>}
+                    </div>
+                }
         </div>
     )
 }

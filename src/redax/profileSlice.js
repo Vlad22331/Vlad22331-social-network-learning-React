@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState =  {
     currentNewPostText: "",
 
-    isFetching: true,
+    userIsFetching: true,
+    postsIsFetching: true,
 }
 
 const profileSlice = createSlice({
@@ -26,8 +27,12 @@ const profileSlice = createSlice({
         },
 
         changeIsFetching(state, action){
-            state.isFetching = action.payload
+            if(action.payload[1] === "user") state.userIsFetching = action.payload[0]
+            else if(action.payload[1] === "posts") state.postsIsFetching = action.payload[0]
         }
+        // changeIsFetching(state, action){
+        //     state.isFetching = action.payload[0]
+        // }
     }
 })
 

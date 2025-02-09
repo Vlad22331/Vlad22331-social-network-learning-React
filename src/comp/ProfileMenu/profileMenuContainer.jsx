@@ -16,13 +16,12 @@
         const dispatch = useDispatch();
         const {ref, inView} = useInView({});
 
-
         const {id} = useParams();
         
         const {data: user, status: userStatus} = useQuery({
             queryKey: ["user", id],
             queryFn: fetchUserData,
-            enabled: !!id
+            enabled: !!id,
         })
 
         const {data: post, status: postStatus, fetchNextPage, hasNextPage} = useInfiniteQuery({
@@ -41,16 +40,6 @@
             };
         }, [inView, hasNextPage, fetchNextPage])
 
-        useEffect(() =>{
-            if(userStatus === "loading") dispatch(changeIsFetching([true, "user"]))   
-            else if(userStatus === "success") dispatch(changeIsFetching([false, "user"]))
-        }, [userStatus, dispatch])
-
-        useEffect(() =>{
-            if(postStatus === "loading") dispatch(changeIsFetching([true, "posts"]))   
-            else if(postStatus === "success") dispatch(changeIsFetching([false, "posts"]))
-        }, [postStatus, dispatch])
-
         const postMass =
         post?.pages.flatMap((page, pageIndex) =>
             page.map((item, itemIndex) => {
@@ -66,15 +55,15 @@
                 />
                 );
             })
-        ) || null;
-
+        ) || null;        
+        
         return(
             <div className="main-info">
-                {!profileData.userIsFetching || !profileData.postsIsFetching ?
+                {userStatus === "success" || postStatus === "success"?
                     <ProfileMenu
                         key={id}
-                        userIsFetching={profileData.userIsFetching}
-                        postsIsFetching={profileData.postsIsFetching}
+                        userStatus={userStatus}
+                        postStatus={postStatus}
                         profileData={user}
                         postMass={postMass}
                         // onUpdateNewPostTextHendler={onUpdateNewPostTextHendler}

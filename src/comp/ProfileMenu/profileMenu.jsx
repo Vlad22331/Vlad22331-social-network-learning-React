@@ -5,16 +5,17 @@ import Posts from "./posts/posts";
 import CreatePost from "./createPost/createPost"
 
 const ProfileMenu = (props) => {    
+    debugger
     return(
         <div>
-            {!props.userIsFetching ? <ProfileInfo userInfo={props.profileData} /> : <Preloader/>}
+            {props.userStatus === "success" ? <ProfileInfo userInfo={props.profileData} /> : <Preloader/>}
                 {/* <CreatePost
                     profileData={props.profileData}
                     onUpdateNewPostText={props.onUpdateNewPostTextHendler}
                     onAddPost={props.onAddPostHendler}
                     />*/
                     <div className="posts">
-                        {!props.postsIsFetching ? <Posts postMass={props.postMass} /> : <Preloader/>}
+                        {props.postStatus === "success" ? <Posts postMass={props.postMass} /> : <Preloader/>}
                     </div>
                 }
         </div>

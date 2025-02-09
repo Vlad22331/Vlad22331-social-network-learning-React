@@ -2,9 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState =  {
     currentNewPostText: "",
-
-    userIsFetching: true,
-    postsIsFetching: true,
 }
 
 const profileSlice = createSlice({
@@ -25,14 +22,6 @@ const profileSlice = createSlice({
         updateNewPostText(state, action) {
             state.currentNewPostText = action.payload
         },
-
-        changeIsFetching(state, action){
-            if(action.payload[1] === "user") state.userIsFetching = action.payload[0]
-            else if(action.payload[1] === "posts") state.postsIsFetching = action.payload[0]
-        }
-        // changeIsFetching(state, action){
-        //     state.isFetching = action.payload[0]
-        // }
     }
 })
 

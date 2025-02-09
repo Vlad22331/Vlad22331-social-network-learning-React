@@ -14,7 +14,7 @@ const ProfileMenu = (props) => {
                     onAddPost={props.onAddPostHendler}
                     />*/
                     <div className="posts">
-                        {!props.postsIsFetching ? <Posts postData={props.postData} /> : <Preloader/>}
+                        {!props.postsIsFetching ? <Posts postMass={props.postMass} /> : <Preloader/>}
                     </div>
                 }
         </div>

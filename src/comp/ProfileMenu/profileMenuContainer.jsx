@@ -2,16 +2,20 @@
     import ProfileMenu from "./profileMenu";
     import { useSelector, useDispatch } from "react-redux";
     import { updateNewPostText, addPost, changeIsFetching } from "../../redax/profileSlice";
-    import { useQuery } from "react-query";
+    import { useQuery, useInfiniteQuery } from "react-query";
     import { useEffect } from "react";
     import { useParams } from "react-router-dom";
     import fetchUserData from "../../api/fetchUserData";
     import fetchPost from "../../api/fetchPost";
-import Preloader from "../preloader";
+    import Preloader from "../preloader";
+    import { useInView } from "react-intersection-observer";
+    import Post from "./posts/comp/post";
 
     const ProfileMenuContainer = () => {
         const profileData = useSelector((state) => state.profileData);
         const dispatch = useDispatch();
+        const {ref, inView} = useInView({});
+
 
         const {id} = useParams();
         
@@ -21,11 +25,21 @@ import Preloader from "../preloader";
             enabled: !!id
         })
 
-        const {data: post, status: postStatus} = useQuery({
+        const {data: post, status: postStatus, fetchNextPage, hasNextPage} = useInfiniteQuery({
             queryKey: ["posts", id],
             queryFn: fetchPost,
+            initialPageParam: 0,
+            getNextPageParam: (lastPage, allPages) => {
+                return lastPage && lastPage.length > 0 ? allPages.length : undefined;
+            },
             enabled: !!id
         })
+
+        useEffect(()=>{
+            if(inView){
+                fetchNextPage()            
+            };
+        }, [inView, hasNextPage, fetchNextPage])
 
         useEffect(() =>{
             if(userStatus === "loading") dispatch(changeIsFetching([true, "user"]))   
@@ -36,7 +50,24 @@ import Preloader from "../preloader";
             if(postStatus === "loading") dispatch(changeIsFetching([true, "posts"]))   
             else if(postStatus === "success") dispatch(changeIsFetching([false, "posts"]))
         }, [postStatus, dispatch])
+
+        const postMass =
+        post?.pages.flatMap((page, pageIndex) =>
+            page.map((item, itemIndex) => {
+                const isLastItem =
+                    pageIndex === post.pages.length - 1 &&
+                    itemIndex === page.length - 1;
     
+                return (
+                <Post 
+                    key={item.id} 
+                    postData = {item}
+                    ref = {isLastItem ? ref : null}
+                />
+                );
+            })
+        ) || null;
+
         return(
             <div className="main-info">
                 {!profileData.userIsFetching || !profileData.postsIsFetching ?
@@ -45,7 +76,7 @@ import Preloader from "../preloader";
                         userIsFetching={profileData.userIsFetching}
                         postsIsFetching={profileData.postsIsFetching}
                         profileData={user}
-                        postData={post}
+                        postMass={postMass}
                         // onUpdateNewPostTextHendler={onUpdateNewPostTextHendler}
                         // onAddPostHendler={onAddPostHendler}
                     />

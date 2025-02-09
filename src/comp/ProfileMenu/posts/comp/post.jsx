@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "../posts.module.css"
 
-const Post = (props) => {    
+
+const Post = React.forwardRef(({ postData }, ref) => { 
     return(
-        <li>
+        <li ref={ref}>
             <div>
                 <div className={styles.postPoint}> </div>
-                <h3>{props.message}</h3>
+                <h3>{postData.title}</h3>
             </div>
                 <br/>
-                <span className={styles.likesCount}>Likes: {props.likesCount}</span>
+                <span className={styles.likesCount}>Likes: {postData.likes_count}</span>
         </li>
     )
-}
+});
 
 export default Post

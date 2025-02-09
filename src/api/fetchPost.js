@@ -6,13 +6,16 @@ const KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZi
 const supbase = createClient(URL, KEY)
 
 
-const fetchPost = async (props) => {
+const fetchPost = async ({pageParam = 0, queryKey}) => {
+    const pageSize = 3;
+
     const { data } = await supbase
     .from("posts")
-    .select("*")
-    .eq("user_id", props.queryKey[1])
+    .select("*", {count: "exact"})
+    .range(pageParam * pageSize, (pageParam + 1) * pageSize - 1)
+    .eq("user_id", queryKey[1])
 
-    return data;
+    return data || [];
 }
 
 export default fetchPost

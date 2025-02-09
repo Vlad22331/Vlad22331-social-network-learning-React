@@ -7,6 +7,7 @@
     import { useParams } from "react-router-dom";
     import fetchUserData from "../../api/fetchUserData";
     import fetchPost from "../../api/fetchPost";
+import Preloader from "../preloader";
 
     const ProfileMenuContainer = () => {
         const profileData = useSelector((state) => state.profileData);
@@ -35,22 +36,21 @@
             if(postStatus === "loading") dispatch(changeIsFetching([true, "posts"]))   
             else if(postStatus === "success") dispatch(changeIsFetching([false, "posts"]))
         }, [postStatus, dispatch])
+    
         return(
             <div className="main-info">
-                {user ? (
-                <ProfileMenu
-                    key={id}
-                    userIsFetching={profileData.userIsFetching}
-                    postsIsFetching={profileData.postsIsFetching}
-                    profileData={user}
-                    postData={post}
-                    // onUpdateNewPostTextHendler={onUpdateNewPostTextHendler}
-                    // onAddPostHendler={onAddPostHendler}
-                />
-            ) : (
-                <p>Користувач не знайдений</p>
-            )
-                } 
+                {!profileData.userIsFetching || !profileData.postsIsFetching ?
+                    <ProfileMenu
+                        key={id}
+                        userIsFetching={profileData.userIsFetching}
+                        postsIsFetching={profileData.postsIsFetching}
+                        profileData={user}
+                        postData={post}
+                        // onUpdateNewPostTextHendler={onUpdateNewPostTextHendler}
+                        // onAddPostHendler={onAddPostHendler}
+                    />
+                : <Preloader/>
+                }
             </div>
         )
     }

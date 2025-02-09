@@ -3,16 +3,19 @@
 }
 
 .post > li{
-    /* display: flex; */
     align-items: center;
     border-bottom: solid black 1px;
-    margin-top: 20px;
+    margin-top: 40px;
     padding-bottom: 10px;
 }
 
 .post > li > div{
     display: flex;
     align-items: center;
+}
+
+.post > li > div > h3{
+    margin: 0;
 }
 
 .postPoint{
